@@ -3,12 +3,9 @@ const userModel = require('../Models/user');
 const messageModel = require('../Models/message');
 
 router.post('/',async (req,res)=>{
-    console.log("custom request");
-    console.log(req.body);
 
 
     let heWants = req.body.body.iWant;
-    console.log("HERE:",heWants)
     switch(heWants)
     {
         //send _id and receive: name and profilePicUrl (if exists, else null)
@@ -80,12 +77,10 @@ router.post('/',async (req,res)=>{
             return res.json({
                 success: 'true'
             })
-            console.log("am gasit pe :", friends_temp)
 
         case 'update_avatar':
             let user_id_avatar = req.body.body._id;
             let new_avatar = req.body.body.new_avatar;
-            console.log("ssasssss")
             try{
                 let temp_user = await userModel.findOneAndUpdate({_id:user_id_avatar},{profile_pic_url:new_avatar})
                 return res.json({
@@ -139,7 +134,6 @@ router.post('/',async (req,res)=>{
 
             if(friend_stage_1.length == 0)
             {
-                console.log("cv")
                 return res.json({
                     arr: []
                 })
@@ -154,7 +148,6 @@ router.post('/',async (req,res)=>{
                         friend_avatar: temp_friend.profile_pic_url,
                         friend_name: temp_friend.name
                     }
-                    console.log("fa push!")
                     final_arr.push(temp_obj)
                 }
                 return res.json({
@@ -163,11 +156,9 @@ router.post('/',async (req,res)=>{
             }
 
 
-            console.log('final arr', final_arr)
             return res.json({
                 arr:final_arr
             })
-            console.log("stage_1:", friend_stage_1)
             
         default: 
             return res.status(400).json({

@@ -2,14 +2,11 @@ const router  = require('express').Router();
 const messageModel = require('../Models/message');
 
 router.post('/', async(req, res)=>{
-    console.log("Push in db mesaj nou!")
     let user_1_id = req.body.body.user_1_id;
     let user_2_id = req.body.body.user_2_id;
     let sender = req.body.body.sender;
     let content = req.body.body.content;
 
-    console.log("verificare date:")
-    console.log(user_1_id, user_2_id, sender, content)
 
     try{
         let current_channel = await messageModel.findOne({
@@ -20,13 +17,11 @@ router.post('/', async(req, res)=>{
                 },
                 {
                     user_1:user_2_id,
-                    user_2:user_1_id  
+                    user_2:user_1_id    
                 }
         ]
         },)
         
-        console.log("canal gasit")
-        console.log(current_channel)
         let old_messaged = current_channel.arr;
         old_messaged.push({
             sender: sender,
