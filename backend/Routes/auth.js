@@ -17,7 +17,7 @@ router.post('/register',async (req,res)=>{
 
     if(error)
     {
-        return res.json({message: error.details[0].message})
+        return res.status(400).json({message: error.details[0].message})
     }
     //check if the user is already in the db
     const emailExists = await UserModel.findOne({email:req.body.email})

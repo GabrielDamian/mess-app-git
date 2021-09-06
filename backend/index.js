@@ -63,7 +63,7 @@ db.once('open',async ()=>{
                     new_msg: new_pure_data
                 })
             }
-            catch(err)
+            catch(err) 
             {
                 console.log(err)
             }

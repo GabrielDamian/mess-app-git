@@ -11,6 +11,7 @@
 .chatcontent-upper
 {
     height: 15%;
+    min-height: 80px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -24,6 +25,29 @@
     padding: 15px 0px;
     overflow-y: scroll;
 }
+
+/*scroll-bar messages container */
+#style-4::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 2px rgb(106, 106, 106);
+	background-color: #414960;
+}
+
+#style-4::-webkit-scrollbar
+{
+	width: 5px;
+	background-color: #414960;
+}
+
+#style-4::-webkit-scrollbar-thumb
+{
+	background-color: #292f47;
+	border: 1px solid transparent;
+}
+
+
+
+
 .chatcontent-input
 {
     height: 15%;
@@ -111,6 +135,10 @@
     align-items: center;
     padding: 0px 20px;
 }
+.input-container form 
+{
+    width: 100%;
+}
 .input-container input 
 {
     border: none;
@@ -126,7 +154,7 @@
     border-color: white;
     transition: border-color 1s ease;
 }
-.input-container button 
+.btn-chat-content 
 {
     width: 10%;
     margin-left: 15px;
@@ -143,11 +171,32 @@
     border-radius: 10px;
     color: rgb(145, 145, 145);
 }
-.input-container button:hover
+.btn-chat-content:hover
 {
     color: white;
     transform: scale(1.06);
     border: 2px solid white;
     transition: transform 0.4s ease, border 0.4s ease;
 
+}
+.btn-show-more-container
+{
+    height: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*noFriendSelected-container */
+.noFriendSelected-container
+{
+    height: 100vh;
+    width: 70%;
+    background-color: #414960;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2em;
+    color: rgb(189, 189, 189);
 }

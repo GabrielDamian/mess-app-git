@@ -165,6 +165,10 @@ const ProfileContent = ({logOut})=>{
             setProfilePictureError(true); 
         }
     }
+    const copyToClipboard = ()=>{
+        console.log("copy to clipboard:", userData.userID)
+        navigator.clipboard.writeText(userData.userID)
+    }
     return(
         <div className="profile-container">
         {/* <button onClick={()=>{logOut()}}>Log out</button> */}
@@ -176,7 +180,7 @@ const ProfileContent = ({logOut})=>{
                 <div className="profile-container-lower">
                     <div className="profile-container-personal-data">
                         <span>Your ID: {userData.userID == null ? '':userData.userID}</span> 
-                        <button className="profile-btn"> Copy</button>   
+                        <button className="profile-btn" onClick={copyToClipboard}> Copy</button>   
                     </div>
                     <div className="profile-container-add-friend">
                         <div className="profile-container-add-friend-title">

@@ -2,8 +2,8 @@ import React from 'react'
 
 const DashBlocked = () => {
     return (
-        <div>
-            <p>Dash blocked</p>
+        <div className="dash-blocked-container">
+            ss
         </div>
     )
 }

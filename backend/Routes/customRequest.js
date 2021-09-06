@@ -43,12 +43,18 @@ router.post('/',async (req,res)=>{
 
             //verifica daca prietenul este un ID valid
             try{
+                if(friend_id.length != 24)
+                {
+                    return res.status(400).json({
+                        message: 'this friend is is not valid!a'
+                    })
+                }
                 let target_friend = await userModel.findById(friend_id);
 
             }
             catch(err)
             {
-                res.status(400).json({
+                return res.status(400).json({
                     message: 'this friend id is not valid!'
                 })
             }

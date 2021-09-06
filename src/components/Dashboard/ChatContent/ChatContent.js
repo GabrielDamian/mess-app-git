@@ -51,9 +51,6 @@ const ChatContent = () => {
 
 
 
- 
-
-
     useEffect(()=>{
         store_friends.subscribe(()=>{
             setCurrentFriend(store_friends.getState())
@@ -122,7 +119,8 @@ const ChatContent = () => {
     }
 
    
-    const handleSendNewMess = ()=>{
+    const handleSendNewMess = (e)=>{
+        e.preventDefault();
         if(newMessContent != '')
         {
             const config = {
@@ -207,7 +205,7 @@ const ChatContent = () => {
 
                 //remove old bottom ref
                 temp_obj_short.forEach((el,index)=>{
-                    if(el['bottom-ref'] != undefined)
+                    if(el != undefined  && el['bottom-ref'] != undefined)
                     {
                         temp_obj_short[index]['bottom-ref'] = false;
                     }
@@ -300,7 +298,7 @@ const ChatContent = () => {
     return (
         <>
         {
-            currentFriend == null ? <p>  No friend selected</p> :
+            currentFriend == null ? <NoFriendSelected /> :
             <div className="chatcontent-container">
             <div className="chatcontent-upper">
                 <div className="chatcontent-upper-left">    
@@ -316,8 +314,10 @@ const ChatContent = () => {
                 </div>
             </div>
 
-            <div className="chatcontent-main">
-                <button onClick={testShowMore}>Show more</button>
+            <div className="chatcontent-main" id="style-4">
+                <div className="btn-show-more-container">
+                    <button className="btn-chat-content" onClick={testShowMore}>Show more</button>
+                </div>
                 {
                     shortMessagesArr == null ? <p>No messages yet</p>:
                     shortMessagesArr.map((el)=>{
@@ -328,14 +328,15 @@ const ChatContent = () => {
 
             <div className="chatcontent-input">
                 <div className="input-container">   
+                <form onSubmit={handleSendNewMess}>
                     <input type="text" placeholder="Type something..." value={newMessContent} onChange={handleNewMessChange}>
-                    
                     </input >
-                    <button onClick={handleSendNewMess}>
+                </form>                    
+                    <button className="btn-chat-content" onClick={handleSendNewMess}>
                         Send
                     </button>
-                    <button onClick={testFct}>TEST</button>
-                    <button onClick={executeScroll}>executeScroll</button>
+                    {/* <button onClick={testFct}>TEST</button>
+                    <button onClick={executeScroll}>executeScroll</button> */}
                 </div>
             </div>
         </div>
@@ -344,4 +345,12 @@ const ChatContent = () => {
     )
 }
 
+
+const NoFriendSelected = ()=>{
+    return(
+        <div className="noFriendSelected-container">
+            <span>Please select a chat</span>
+        </div>
+    )
+}
 export default ChatContent
