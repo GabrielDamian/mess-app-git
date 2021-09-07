@@ -11,7 +11,7 @@ const Signup = () => {
         name: '',
         email: '',
         password: '',
-        doublePassword: ''
+        doublePassword: '',
     })
     const [errText, setErrText] = useState('');
 
@@ -50,7 +50,7 @@ const Signup = () => {
                 let copyObj = inputData;
                 delete copyObj.doublePassword
 
-                axios.post('api/user/register',copyObj)
+                axios.post('/api/user/register',copyObj)
                 .then(res=>{
                     console.log(res)
                     console.log("token signup:", res.data);
@@ -59,8 +59,8 @@ const Signup = () => {
                     
                 })
                 .catch(error => {
-                    setErrText(error.response.data.message);
-                    console.log(error.response.data);
+                    console.log(error)
+                    //setErrText(error.response.data.message);
                 });
             }
 

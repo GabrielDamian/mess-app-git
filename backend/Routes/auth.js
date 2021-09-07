@@ -37,7 +37,8 @@ router.post('/register',async (req,res)=>{
         email: req.body.email,
         password: hashPassword,
         profile_pic_url: null,
-        friends: []
+        friends: [],
+        lastActive: null
     })
     
     try{
@@ -53,6 +54,7 @@ router.post('/register',async (req,res)=>{
 })
 
 router.post('/login',async (req,res)=>{
+    console.log('login')
     //validate user data
     const {error} = loginValidation(req.body);
     

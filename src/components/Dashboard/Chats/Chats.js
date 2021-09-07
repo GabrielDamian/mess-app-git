@@ -47,9 +47,9 @@ const Chats = () => {
                     return(
                         <>
                         {selectedFriend == el.friend_id ? 
-                        <PersonChatElem selected name={el.friend_name} avatar={el.friend_avatar} f_id={el.friend_id}/> 
+                        <PersonChatElem selected name={el.friend_name} avatar={el.friend_avatar} f_id={el.friend_id} lastActive={el.friend_lastActive}/> 
                         :
-                        <PersonChatElem name={el.friend_name} avatar={el.friend_avatar} f_id={el.friend_id}/> 
+                        <PersonChatElem name={el.friend_name} avatar={el.friend_avatar} f_id={el.friend_id} lastActive={el.friend_lastActive}/> 
                         }
                         </>
                     )
@@ -60,6 +60,7 @@ const Chats = () => {
         </div>
     )
 }
+
 
 const PersonChatElem = (props)=>{
 
@@ -73,11 +74,44 @@ const PersonChatElem = (props)=>{
             }
         })
     }
+    const decideLastActive = (lastActiveDate) =>{
+        //primeste new Date().toString() 
+        //converteste server time in local time 
+        //verifica daca curentLocalTime > userLastActiveTime + offset => intoarce boolean
+    
+        let userServerTime = new Date(lastActiveDate);
+        let currentDate = new Date();
+
+        let userServeTimeSeconds = userServerTime.getTime()/1000;
+        let currentTimeSeconds = currentDate.getTime()/1000;
+        
+        console.log("DIFERENTA:", currentTimeSeconds - userServeTimeSeconds)
+        let diferenta = currentTimeSeconds - userServeTimeSeconds;
+
+        //let userServerTime = lastActiveDate
+        console.log("USER SERVER TIME: ", userServerTime);
+        console.log("Current time: ", currentDate)
+
+        if(diferenta <300)
+        {
+            return <p className="activeNow">Active</p>
+        }
+        else if(diferenta > 300 && diferenta < 3600)
+        {
+            return <p className="lastActive">{`Active ${parseInt(diferenta/60)}m ago.`}</p>
+        }
+        else 
+        {
+            return 'Active long time ago.'
+        }
+
+    }
     return(
         <div className={props.selected == true ? "person-chat-elem-container selected-chat" :"person-chat-elem-container"} onClick={setSelectedFriend}>
             <img src={props.avatar == null ? DefaultUserIcon:props.avatar } alt="user profile"/>
             <div className="person-char-data">
                 <h5>{props.name}</h5>
+                {decideLastActive(props.lastActive)}
             </div>
         </div>
     )

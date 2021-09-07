@@ -167,7 +167,8 @@ const ChatContent = () => {
         {
             return (
                 <div ref={myRef} className={`${class_text}`}>
-                    <span>{data.content}</span>
+                    <div>{data.content}</div>
+
                 </div>
             )
         }
@@ -175,7 +176,7 @@ const ChatContent = () => {
         {
             return (
                 <div ref={myBotomRef} className={`${class_text}`}>
-                    <span>{data.content}</span>
+                    <div>{data.content}</div>
                 </div>
             )
         }
@@ -183,7 +184,7 @@ const ChatContent = () => {
         {
             return (
                 <div className={`${class_text}`}>
-                    <span>{data.content}</span>
+                    <div>{data.content}</div>
                 </div>
             )
         }

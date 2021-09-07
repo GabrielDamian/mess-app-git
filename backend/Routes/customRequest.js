@@ -152,7 +152,8 @@ router.post('/',async (req,res)=>{
                     let temp_obj = {
                         friend_id: friend_stage_1[i],
                         friend_avatar: temp_friend.profile_pic_url,
-                        friend_name: temp_friend.name
+                        friend_name: temp_friend.name,
+                        friend_lastActive: temp_friend.lastActive
                     }
                     final_arr.push(temp_obj)
                 }

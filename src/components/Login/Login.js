@@ -15,6 +15,7 @@ const Login  = ()=>{
     const [errText, setErrText] = useState('');
 
     const handleInputChange= (e)=>{
+        setErrText('');
         setFormData((prev)=>{
             let obj = {...prev};
             obj[e.target.name] = e.target.value;
@@ -29,7 +30,7 @@ const Login  = ()=>{
         }
         else
         {
-            axios.post('api/user/login',formData)
+            axios.post('/api/user/login',formData)
             .then((res)=>{
                 console.log(res)
                 localStorage.setItem('token',res.data)
@@ -37,7 +38,8 @@ const Login  = ()=>{
                 
             })
             .catch(error => {
-                console.log(error.response.data);
+                console.log(error);
+                setErrText('There was a problem logging you in.')
             });
             
         }
@@ -79,34 +81,3 @@ const Login  = ()=>{
 }
 
 export default Login
-
-{/* <div className="sign-up-container-under-menu">
-                <div className="sign-up-container-center-form">
-                    <div className="sign-up-container-title">
-                        <div className="sign-up-title-padding">
-                            <span>Login</span>
-                        </div>
-                    </div>
-                    <div className="sign-up-container-form-container">
-                        <div className="sign-up-form-container-padding">
-                            <form className="sign-up-form">
-                                <label>
-                                    <span>Email</span>
-                                    <input type="text" name="email" onChange={handleInputChange}/>
-                                </label>
-                                <label>
-                                    <span>Password</span>
-                                    <input type="text" name="password" onChange={handleInputChange}/>
-                                </label>
-
-                                <label className="submit-btn-label">
-                                    <button onClick={handleSubmit}>Log in</button>
-                                </label>
-                                <label className="change-state-signin-signup">
-                                    <p onClick={()=>{history.push('/signup')}}>Don't have an account? Sign up.</p>
-                                </label>
-                        </form>
-                        </div>
-                    </div>
-                </div>
-            </div> */}

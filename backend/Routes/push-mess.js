@@ -1,5 +1,6 @@
 const router  = require('express').Router();
 const messageModel = require('../Models/message');
+const userModel = require('../Models/user');
 
 router.post('/', async(req, res)=>{
     let user_1_id = req.body.body.user_1_id;
@@ -7,6 +8,20 @@ router.post('/', async(req, res)=>{
     let sender = req.body.body.sender;
     let content = req.body.body.content;
 
+    //sender este activ, deci update la lastActive
+    try{
+        console.log("SENDER ID:", sender);
+        let new_Date = new Date();
+        console.log("new date: ", new_Date)
+        let finded_sender = await userModel.findOneAndUpdate({_id: sender},{lastActive: new_Date.toString()})
+        console.log("UPDATE SUCCESFULLY SENDER")
+    }
+    catch(err)
+    {
+        res.status(400).json({
+            message: 'error at finding sender in db'
+        })
+    }
 
     try{
         let current_channel = await messageModel.findOne({

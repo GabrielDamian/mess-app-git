@@ -22,10 +22,8 @@ const userSchema = new mongoose.Schema({
     profile_pic_url:{
         type:String
     },
-    friends: Array
-    //Array de obiecte de forma:
-    //name: ceva
-    //chat: [{from: __, content:__}]
+    friends: Array,
+    lastActive: String 
 })
 
 module.exports = mongoose.model('User',userSchema);
