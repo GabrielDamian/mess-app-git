@@ -1,5 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 .dash-blocked-container
 {
     height: 100vh;
-    border: 1px solid red;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #292f47;
+}
+.dash-blocked-content
+{
+    height: 70%;
+    width: 70%;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    font-size: 1.2em;
+}
+.dash-blocked-content button 
+{
+    margin-top: 40px;
+}
+.dash-blocked-content img 
+{
+    height: 50%;
+    margin-top: 5%;
 }
