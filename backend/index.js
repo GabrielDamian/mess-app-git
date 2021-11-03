@@ -73,7 +73,7 @@ db.once('open',async ()=>{
 
 let connect_to_mongose = async ()=>{
     try {
-        let ceva_pola = await mongoose.connect(process.env.DB_CONNECT, {
+        let ceva_temp_obj = await mongoose.connect(process.env.DB_CONNECT, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
